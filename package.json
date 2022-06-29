@@ -11,7 +11,8 @@
     "prod": "tsc -p tsconfig-commonjs.json ; tsc -p tsconfig-es6.json",
     "prepublish-npm": "yzb-create-tag; rm -rf dist ; npm run prod ; cp package.json dist/package.json ; cp LICENSE dist/LICENSE ; cp NOTICE dist/NOTICE ; cp README.md dist/README.md ;",
     "publish-npm": "yzb-npm-publish",
-    "create-tag": "yzb-create-tag"
+    "create-tag": "yzb-create-tag",
+    "merge-main": "yzb-merge-main"
   },
   "repository": {
     "type": "git",

@@ -26,3 +26,34 @@ export enum ExtensionRendererMessageTopic {
   // 用户向process发送获取process相关属性的信息,用以renderer获取extension状态
   GET_PROPERTY = '__extension_renderer_message_toppic_get_property',
 }
+
+export interface ScriptContent {
+  content_type: 'file_content_base64';
+  content: string; // moudule file content
+  identity: string; // for renderer sync
+  file_content_sha1?: string; // sha1 value for identity module file is load or not
+}
+
+export enum ChartViewModuleDataActionType {
+  ARRAY_APPEND_START = 'array_append_start',
+  ARRAY_APPEND_END = 'array_append_end',
+  ARRAY_MERGE_START = 'array_merge_start',
+  ARRAY_MERGE_END = 'array_merge_end',
+  OBJECT_MERGE = 'object_merge',
+  DELETE = 'delete',
+  REPLACE = 'replace',
+  INCREASE = 'increase',
+  DECREASE = 'decrease',
+}
+
+export interface ChartViewModuleUpdateDataAction {
+  targetPath: Array<any>;
+  action: ChartViewModuleDataActionType;
+  data?: any;
+  version: number;
+}
+
+export interface ModuleItem {
+  info: ScriptContent; // type of module
+  moudule: any;
+}

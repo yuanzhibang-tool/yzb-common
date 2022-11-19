@@ -87,6 +87,14 @@ export class IpcMessageTopic {
     }
     return true;
   }
+
+  static checkValid(topic: string) {
+    const valid = IpcMessageTopic.isValid(topic);
+    if (!valid) {
+      throw new Error('the topic is not valid, the topic can not contain # and +');
+    }
+  }
+
   static isSubTopic(topic: string, subTopic: string) {
     const topicArray = topic.split('/');
     const subTopicArray = subTopic.split('/');

@@ -80,6 +80,13 @@ export interface ModuleItem {
 }
 
 export class IpcMessageTopic {
+  static isValid(topic: string) {
+    // the topic can not contain # and +
+    if (topic.includes('#') || topic.includes('+')) {
+      return false;
+    }
+    return true;
+  }
   static isSubTopic(topic: string, subTopic: string) {
     const topicArray = topic.split('/');
     const subTopicArray = subTopic.split('/');

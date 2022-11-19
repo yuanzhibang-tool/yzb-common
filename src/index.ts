@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 /* eslint-disable no-unused-vars */
 export enum ExtensionLifecycleEventMessageTopic {
   // 在process在执行时候调用,代表猿之棒客户端已经启动该process,该回调由猿之棒客户端触发
@@ -56,4 +57,38 @@ export interface ChartViewModuleUpdateDataAction {
 export interface ModuleItem {
   info: ScriptContent; // type of module
   moudule: any;
+}
+
+export class IpcMessageTopic {
+  static isSubTopic(topic: string, subTopic: string) {
+    const topicArray = topic.split('/');
+    const subTopicArray = subTopic.split('/');
+    for (let index = 0; index < subTopicArray.length; index++) {
+      const topicIdxValue = topicArray[index];
+      const subTopicIdxValue = subTopicArray[index];
+      if (topicIdxValue === '#') {
+        return true;
+      }
+      if (topicIdxValue !== subTopicIdxValue && topicIdxValue !== '+') {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static parseKeyValueTopic(topic: string): Map<string, string> {
+    // parse topic with /
+    const topicArray = topic.split('/');
+    if (topicArray.length % 2 === 1) {
+      throw new Error('topic not key value format string');
+    }
+    const map = new Map<string, string>();
+    const keyLength = topicArray.length / 2;
+    for (let index = 0; index < keyLength; index++) {
+      const key = topicArray[2 * index];
+      const value = topicArray[2 * index + 1];
+      map.set(key, value);
+    }
+    return map;
+  }
 }

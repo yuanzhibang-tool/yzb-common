@@ -53,6 +53,7 @@ export interface ScriptContent {
   content: string; // moudule file content
   identity: string; // for renderer sync
   file_content_sha1?: string; // sha1 value for identity module file is load or not
+  process_info?: any; // process info, user can be filtered process by process_info key
 }
 
 export enum ChartViewModuleDataActionType {

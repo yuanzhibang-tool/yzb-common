@@ -68,11 +68,11 @@ export enum ChartViewModuleDataActionType {
   DECREASE = 'decrease',
 }
 
-export interface ChartViewModuleUpdateDataAction {
+export interface ChartViewModuleUpdateData {
   targetPath: Array<any>;
   action: ChartViewModuleDataActionType;
   data?: any;
-  version: number;
+  version?: number;
 }
 
 export interface ModuleItem {
